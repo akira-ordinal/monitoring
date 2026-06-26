@@ -1,13 +1,97 @@
 <style>
+/* ==========================================================
+   BitTrade スプレッド監視 — WordPress Custom HTML 専用
+   全スタイルは #btsm-login / #btsm-root スコープで隔離
+========================================================== */
+
+/* ---- ログインオーバーレイ ---- */
+#btsm-login {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(160deg, #001824 0%, #003348 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+
+#btsm-login .lc {
+  background: #fff;
+  border-radius: 12px;
+  padding: 40px 36px;
+  width: 360px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.22);
+}
+
+#btsm-login .lc__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111820;
+  text-align: center;
+  margin: 0 0 4px;
+}
+
+#btsm-login .lc__sub {
+  font-size: 12px;
+  color: #546070;
+  text-align: center;
+  margin: 0 0 24px;
+}
+
+#btsm-login .lc__input {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid #DDE3ED;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 15px;
+  color: #111820;
+  background: #F7F9FC;
+  margin-bottom: 12px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color .15s;
+}
+#btsm-login .lc__input:focus { border-color: #00D9FF; }
+
+#btsm-login .lc__btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background: #001824;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s;
+}
+#btsm-login .lc__btn:hover { background: #003348; }
+
+#btsm-login .lc__error {
+  font-size: 12px;
+  color: #DC2626;
+  text-align: center;
+  margin-top: 8px;
+  min-height: 18px;
+}
+
+/* ---- アプリ本体 ---- */
 #btsm-root {
   font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
+/* サマリーカード */
 #btsm-root .btsm-summary {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   margin-bottom: 14px;
 }
+
 #btsm-root .btsm-sc {
   background: #fff;
   border: 1px solid #DDE3ED;
@@ -15,6 +99,7 @@
   padding: 16px 18px;
   box-shadow: 0 1px 3px rgba(0,0,0,.05);
 }
+
 #btsm-root .btsm-sc__label {
   font-size: 10px;
   font-weight: 700;
@@ -23,6 +108,7 @@
   color: #546070;
   margin-bottom: 4px;
 }
+
 #btsm-root .btsm-sc__value {
   font-size: 22px;
   font-weight: 700;
@@ -32,11 +118,14 @@
 }
 #btsm-root .btsm-sc__value--alert { color: #DC2626; }
 #btsm-root .btsm-sc__value--warn  { color: #D97706; }
+
 #btsm-root .btsm-sc__sub {
   font-size: 11px;
   color: #546070;
   margin-top: 2px;
 }
+
+/* 設定バー */
 #btsm-root .btsm-settings {
   display: flex;
   align-items: center;
@@ -49,17 +138,20 @@
   margin-bottom: 14px;
   box-shadow: 0 1px 3px rgba(0,0,0,.05);
 }
+
 #btsm-root .btsm-group {
   display: flex;
   align-items: center;
   gap: 8px;
 }
+
 #btsm-root .btsm-label {
   font-size: 12px;
   font-weight: 600;
   color: #546070;
   white-space: nowrap;
 }
+
 #btsm-root .btsm-input {
   width: 70px;
   padding: 5px 8px;
@@ -70,8 +162,15 @@
   color: #111820;
   background: #F7F9FC;
   outline: none;
+  transition: border-color .15s;
 }
-#btsm-root .btsm-unit { font-size: 12px; color: #546070; }
+#btsm-root .btsm-input:focus { border-color: #00D9FF; }
+
+#btsm-root .btsm-unit {
+  font-size: 12px;
+  color: #546070;
+}
+
 #btsm-root .btsm-select {
   padding: 5px 8px;
   border: 1.5px solid #DDE3ED;
@@ -82,7 +181,10 @@
   background: #F7F9FC;
   outline: none;
   cursor: pointer;
+  transition: border-color .15s;
 }
+#btsm-root .btsm-select:focus { border-color: #00D9FF; }
+
 #btsm-root .btsm-btn {
   padding: 5px 14px;
   background: #001824;
@@ -93,19 +195,31 @@
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
+  transition: background .15s;
 }
 #btsm-root .btsm-btn:hover { background: #003348; }
+
+#btsm-root .btsm-btn--logout {
+  background: transparent;
+  color: #546070;
+  border: 1.5px solid #DDE3ED;
+}
+#btsm-root .btsm-btn--logout:hover { background: #F7F9FC; color: #111820; }
+
 #btsm-root .btsm-divider {
   width: 1px;
   height: 20px;
   background: #DDE3ED;
   flex-shrink: 0;
 }
+
 #btsm-root .btsm-meta {
   margin-left: auto;
   font-size: 11px;
   color: #546070;
 }
+
+/* テーブル */
 #btsm-root .cl-table-wrap {
   background: #fff;
   border: 1px solid #DDE3ED;
@@ -113,8 +227,14 @@
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0,0,0,.05);
 }
-#btsm-root .cl-table { width: 100%; border-collapse: collapse; }
+
+#btsm-root .cl-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
 #btsm-root .cl-table__head { background: #F7F9FC; }
+
 #btsm-root .cl-th {
   padding: 10px 16px;
   text-align: left;
@@ -126,57 +246,139 @@
   border-bottom: 1px solid #DDE3ED;
   white-space: nowrap;
 }
-#btsm-root .cl-row { border-bottom: 1px solid #DDE3ED; }
+
+#btsm-root .cl-row {
+  border-bottom: 1px solid #DDE3ED;
+  transition: background .15s;
+}
 #btsm-root .cl-row:last-child { border-bottom: none; }
 #btsm-root .cl-row:hover { background: #F7F9FC; }
 #btsm-root .cl-row--warn  { background: #FFFBEB; }
+#btsm-root .cl-row--warn:hover  { background: #FDE68A44; }
 #btsm-root .cl-row--alert { background: #FEF2F2; }
-#btsm-root .cl-td { padding: 10px 16px; font-size: 13px; vertical-align: middle; }
-#btsm-root .cl-coin { display: flex; align-items: center; gap: 10px; }
+#btsm-root .cl-row--alert:hover { background: #FEE2E2; }
+
+#btsm-root .cl-td {
+  padding: 10px 16px;
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+/* 銘柄セル — アイコンのずれを修正 */
+#btsm-root .cl-coin {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
 #btsm-root .cl-coin__icon {
-  width: 32px; height: 32px; min-width: 32px;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
   border-radius: 50%;
   overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #F7F9FC;
   border: 1px solid #DDE3ED;
   flex-shrink: 0;
 }
-#btsm-root .cl-coin__icon img { width: 32px; height: 32px; object-fit: cover; display: block; }
-#btsm-root .cl-coin__info { display: flex; flex-direction: column; gap: 1px; }
-#btsm-root .cl-coin__name { font-size: 13px; font-weight: 500; color: #111820; line-height: 1.3; white-space: nowrap; }
-#btsm-root .cl-coin__symbol { font-size: 11px; color: #546070; }
-#btsm-root .cl-price { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; color: #111820; }
+
+#btsm-root .cl-coin__icon img {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+}
+
+#btsm-root .cl-coin__info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+#btsm-root .cl-coin__name {
+  font-size: 13px;
+  font-weight: 500;
+  color: #111820;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+#btsm-root .cl-coin__symbol {
+  font-size: 11px;
+  color: #546070;
+}
+
+/* 価格 */
+#btsm-root .cl-price {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: #111820;
+}
+
+/* スプレッド */
 #btsm-root .cl-spread {
   display: inline-block;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px; font-weight: 700;
-  padding: 2px 8px; border-radius: 4px;
-  background: #ECFDF5; color: #065F46;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: #ECFDF5;
+  color: #065F46;
 }
 #btsm-root .cl-spread--warn  { background: #FFFBEB; color: #92400E; }
 #btsm-root .cl-spread--alert { background: #FEF2F2; color: #B91C1C; }
+
+/* ステータス */
 #btsm-root .cl-status {
   display: inline-block;
-  padding: 3px 8px; border-radius: 4px;
-  font-size: 11px; font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
 }
 #btsm-root .cl-status--normal  { background: #ECFDF5; color: #065F46; }
 #btsm-root .cl-status--caution { background: #FFFBEB; color: #92400E; }
 #btsm-root .cl-status--alert   { background: #FEF2F2; color: #B91C1C; }
-#btsm-root .cl-sub { font-size: 12px; color: #546070; font-style: italic; }
-#btsm-root .cl-loading { text-align: center; padding: 48px 16px; color: #546070; font-size: 13px; }
+
+#btsm-root .cl-sub {
+  font-size: 12px;
+  color: #546070;
+  font-style: italic;
+}
+
+#btsm-root .cl-loading {
+  text-align: center;
+  padding: 48px 16px;
+  color: #546070;
+  font-size: 13px;
+}
+
 #btsm-root .cl-footer {
   padding: 10px 16px;
   border-top: 1px solid #DDE3ED;
   background: #F7F9FC;
-  font-size: 11px; color: #546070; text-align: right;
+  font-size: 11px;
+  color: #546070;
+  text-align: right;
 }
+
+/* レスポンシブ */
 @media (max-width: 767px) {
-  #btsm-root .cl-th--bid, #btsm-root .cl-td--bid { display: none; }
+  #btsm-root .cl-th--bid,
+  #btsm-root .cl-td--bid { display: none; }
   #btsm-root .btsm-sc { padding: 12px; }
   #btsm-root .btsm-sc__value { font-size: 18px; }
 }
+
 @media (max-width: 480px) {
   #btsm-root .btsm-summary { grid-template-columns: 1fr; }
   #btsm-root .btsm-settings { flex-direction: column; align-items: flex-start; }
@@ -184,7 +386,21 @@
 }
 </style>
 
-<div id="btsm-root">
+<!-- ログインオーバーレイ -->
+<div id="btsm-login">
+  <div class="lc">
+    <h2 class="lc__title">スプレッド監視</h2>
+    <p class="lc__sub">BitTrade 板情報モニタリング</p>
+    <input type="password" id="btsm-pw" class="lc__input" placeholder="パスワード">
+    <button id="btsm-login-btn" class="lc__btn">ログイン</button>
+    <p id="btsm-error" class="lc__error"></p>
+  </div>
+</div>
+
+<!-- アプリ本体 -->
+<div id="btsm-root" style="display:none;">
+
+  <!-- サマリーカード -->
   <div class="btsm-summary">
     <div class="btsm-sc">
       <div class="btsm-sc__label">監視銘柄数</div>
@@ -203,6 +419,7 @@
     </div>
   </div>
 
+  <!-- 設定バー -->
   <div class="btsm-settings">
     <div class="btsm-group">
       <span class="btsm-label">警告しきい値</span>
@@ -220,8 +437,10 @@
       </select>
     </div>
     <span class="btsm-meta" id="btsm-updated">最終更新: --</span>
+    <button id="btsm-logout-btn" class="btsm-btn btsm-btn--logout">ログアウト</button>
   </div>
 
+  <!-- テーブル -->
   <div class="cl-table-wrap">
     <table class="cl-table">
       <thead class="cl-table__head">
@@ -239,118 +458,156 @@
     </table>
     <div class="cl-footer" id="btsm-footer">60秒ごとに自動更新</div>
   </div>
+
 </div>
 
-<script type="text/javascript">
-/* global btsm */
-var btsm = (function () {
+<script>
+(function () {
+  'use strict';
 
-  var threshold = 5.0;
-  var sortOrder = 'spread-desc';
-  var timer     = null;
-  var API       = 'https://api-cloud.bittrade.co.jp/market/detail/merged';
+  /* ---- 設定 ---- */
+  var PASSWORD = '0927';
+  var intervalId      = null;
+  var spreadThreshold = 5.0;
+  var sortOrder       = 'spread-desc';
+  var API = 'https://api-cloud.bittrade.co.jp/market/detail/merged';
 
+  /* ---- 銘柄リスト (/chart_price/ と同一の順序・アイコンURL) ---- */
   var COINS = [
-    { s:'btc',   name:'ビットコイン',           dec:0, icon:'https://static.bittrade.co.jp/banner/20260309/17b710a9883f44ab8d6516ff41ffb13b' },
-    { s:'sol',   name:'ソラナ',                 dec:0, icon:'https://static.bittrade.co.jp/banner/20240507/05082f72ca5d4475854c2a97246b138f' },
-    { s:'eth',   name:'イーサリアム',           dec:0, icon:'https://static.bittrade.co.jp/banner/20260309/862874b0286247b7b167cf378b664689' },
-    { s:'xrp',   name:'エックスアールピー',     dec:2, icon:'https://static.bittrade.co.jp/banner/20260309/8cc5a140a71349b88cd738d57f41a8ba' },
-    { s:'joc',   name:'ジェーオーシーコイン',   dec:3, icon:'https://static.bittrade.co.jp/banner/20260316/04db5af7daee4a2885d543d30ac397a8' },
-    { s:'upc',   name:'ユーピーシーエックス',   dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/8f47a339efae43e4a7b52e9789227f55' },
-    { s:'hbar',  name:'ヘデラ ハッシュグラフ',  dec:2, icon:'https://static.bittrade.co.jp/banner/20260212/c7f89f081515452d8a724faf7e7ccdc9' },
-    { s:'trump', name:'オフィシャルトランプ',    dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/80bbbc0a09c24308932b3db8163b748d' },
-    { s:'link',  name:'チェーンリンク',         dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/427ba464e4fb4e7ead001286904b225d' },
-    { s:'trx',   name:'トロン',                 dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/f43e1bbde8514dc995992309bb9908c5' },
-    { s:'crts',  name:'クラトス',               dec:5, icon:'https://static.bittrade.co.jp/banner/20260311/bf60e74173974d6a9bc473413a317dc9' },
-    { s:'op',    name:'オプティミズム',         dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/e2ff0584c04e45798fad2ae6059d3b47' },
-    { s:'arb',   name:'アービトラム',           dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/42e97aaed8a142eaae5d55151dde145c' },
-    { s:'wbtc',  name:'ラップドビットコイン',   dec:0, icon:'https://static.bittrade.co.jp/banner/20260311/f179b89a34854ca1b0ee346dee4acf0b' },
-    { s:'pepe',  name:'ぺぺ',                   dec:5, icon:'https://static.bittrade.co.jp/banner/20260311/0623ab75f3d84c1c80e7dbe183ff53d8' },
-    { s:'a',     name:'ボルタ',                 dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/d306224bc4814932827822a389f25cb8' },
-    { s:'doge',  name:'ドージコイン',           dec:4, icon:'https://static.bittrade.co.jp/banner/20260311/557dac0083524c01ae638e122bd330a5' },
-    { s:'shib',  name:'シバイヌ',               dec:5, icon:'https://static.bittrade.co.jp/banner/20260311/7c7e732f60eb4040baffb94f69aac86e' },
-    { s:'sui',   name:'スイ',                   dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/2453032cbd314e16a0eb4d447690c2c4' },
-    { s:'sky',   name:'スカイ',                 dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/169f0844334d435983ca990e89442737' },
-    { s:'bnb',   name:'ビルドアンドビルド',     dec:0, icon:'https://static.bittrade.co.jp/banner/20260311/511cd58c5f034edba3ab2d174dc19913' },
-    { s:'ton',   name:'トンコイン',             dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/7728c76887f0408594803fc42c73baa0' },
-    { s:'apt',   name:'アプトス',               dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/1ce4c303caf84c49b63c9c75bf406c20' },
-    { s:'dai',   name:'ダイ',                   dec:3, icon:'https://static.bittrade.co.jp/banner/20260316/ed4ba9e1c7194696812835b72bdf9994' },
-    { s:'axs',   name:'アクシーインフィニティ', dec:3, icon:'https://static.bittrade.co.jp/banner/20260316/4403e35978e34dcab10ef3286b71ccea' },
-    { s:'sand',  name:'ザ・サンドボックス',     dec:3, icon:'https://static.bittrade.co.jp/banner/20260316/17f4a8c227a44e26bd6d65dc534456b9' },
-    { s:'matic', name:'ポリゴン',               dec:2, icon:'https://static.bittrade.co.jp/banner/20260316/94e902977e9b4a3cadf64cce9b1c403b' },
-    { s:'bsv',   name:'ビットコインSV',         dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/9274e32072d643d79e8e599b2c4f4b6d' },
-    { s:'dep',   name:'ディープコイン',         dec:4, icon:'https://static.bittrade.co.jp/banner/20260316/f2ad39c33f8644a4948a817b165060f0' },
-    { s:'astr',  name:'アスター',               dec:3, icon:'https://static.bittrade.co.jp/banner/20260311/53a03780de9b41d9934845caf2ea66b6' },
-    { s:'atom',  name:'コスモス',               dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/e3fdba49b63c4df194b7349cd613b39b' },
-    { s:'cot',   name:'コスプレトークン',       dec:4, icon:'https://static.bittrade.co.jp/banner/20260311/0cb18432dbeb4b449d3019efe729690e' },
-    { s:'jasmy', name:'ジャスミーコイン',       dec:4, icon:'https://static.bittrade.co.jp/banner/20260311/5a2d104c09ab4cd19c55af8d67f1cc42' },
-    { s:'ltc',   name:'ライトコイン',           dec:0, icon:'https://static.bittrade.co.jp/banner/20260311/24c9e3be9c094f53b6458b6b0cda71dc' },
-    { s:'flr',   name:'フレア',                 dec:3, icon:'https://static.bittrade.co.jp/banner/20260311/893a3604c46c48da9551f37cbdedf297' },
-    { s:'ada',   name:'エイダコイン',           dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/5c654efbd9bc4b7d9516ceebadd2c0f2' },
-    { s:'etc',   name:'イーサリアムクラシック', dec:2, icon:'https://static.bittrade.co.jp/banner/20260309/c79785f5269c4b1e95c4c1049ace1179' },
-    { s:'dot',   name:'ポルカドット',           dec:2, icon:'https://static.bittrade.co.jp/banner/20260316/7d8aac641960414783c5e95dad992b4b' },
-    { s:'iost',  name:'アイオーエストークン',   dec:4, icon:'https://static.bittrade.co.jp/banner/20260311/02b5eff1a78e4b7da9753369969e366b' },
-    { s:'xym',   name:'シンボル',               dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/c4e8436c39a34cb1a2ed34b0c50adcfa' },
-    { s:'bch',   name:'ビットコインキャッシュ', dec:0, icon:'https://static.bittrade.co.jp/banner/20260309/dd06468178ec41948641a613c3d0dcfa' },
-    { s:'xtz',   name:'テゾス',                 dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/92c073df62844856aa43199f359c19d9' },
-    { s:'qtum',  name:'クオンタム',             dec:2, icon:'https://static.bittrade.co.jp/banner/20260309/afa597ab55d14e0296126855a093692f' },
-    { s:'boba',  name:'ボバネットワーク',       dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/94f524dfdd96458f997c8b0c01382c38' },
-    { s:'bat',   name:'BAT',                    dec:2, icon:'https://static.bittrade.co.jp/banner/20260309/89e24fac1b2d457d9d6659620eb99092' },
-    { s:'xlm',   name:'ステラルーメン',         dec:2, icon:'https://static.bittrade.co.jp/banner/20260309/83db16f4106f4ab7bd98ffe2131bc1bf' },
-    { s:'ont',   name:'オントロジー',           dec:2, icon:'https://static.bittrade.co.jp/banner/20260309/f60493fab0744f63b6aa90555562bed5' }
+    { s:'btc',   name:'ビットコイン',                   dec:0, icon:'https://static.bittrade.co.jp/banner/20260309/17b710a9883f44ab8d6516ff41ffb13b' },
+    { s:'sol',   name:'ソラナ',                         dec:0, icon:'https://static.bittrade.co.jp/banner/20240507/05082f72ca5d4475854c2a97246b138f' },
+    { s:'eth',   name:'イーサリアム',                   dec:0, icon:'https://static.bittrade.co.jp/banner/20260309/862874b0286247b7b167cf378b664689' },
+    { s:'xrp',   name:'エックスアールピー',             dec:2, icon:'https://static.bittrade.co.jp/banner/20260309/8cc5a140a71349b88cd738d57f41a8ba' },
+    { s:'joc',   name:'ジェーオーシーコイン',           dec:3, icon:'https://static.bittrade.co.jp/banner/20260316/04db5af7daee4a2885d543d30ac397a8' },
+    { s:'upc',   name:'ユーピーシーエックス',           dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/8f47a339efae43e4a7b52e9789227f55' },
+    { s:'hbar',  name:'ヘデラ ハッシュグラフ',          dec:2, icon:'https://static.bittrade.co.jp/banner/20260212/c7f89f081515452d8a724faf7e7ccdc9' },
+    { s:'trump', name:'オフィシャルトランプ',            dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/80bbbc0a09c24308932b3db8163b748d' },
+    { s:'link',  name:'チェーンリンク',                 dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/427ba464e4fb4e7ead001286904b225d' },
+    { s:'trx',   name:'トロン',                         dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/f43e1bbde8514dc995992309bb9908c5' },
+    { s:'crts',  name:'クラトス',                       dec:5, icon:'https://static.bittrade.co.jp/banner/20260311/bf60e74173974d6a9bc473413a317dc9' },
+    { s:'op',    name:'オプティミズム',                 dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/e2ff0584c04e45798fad2ae6059d3b47' },
+    { s:'arb',   name:'アービトラム',                   dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/42e97aaed8a142eaae5d55151dde145c' },
+    { s:'wbtc',  name:'ラップドビットコイン',           dec:0, icon:'https://static.bittrade.co.jp/banner/20260311/f179b89a34854ca1b0ee346dee4acf0b' },
+    { s:'pepe',  name:'ぺぺ',                           dec:5, icon:'https://static.bittrade.co.jp/banner/20260311/0623ab75f3d84c1c80e7dbe183ff53d8' },
+    { s:'a',     name:'ボルタ',                         dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/d306224bc4814932827822a389f25cb8' },
+    { s:'doge',  name:'ドージコイン',                   dec:4, icon:'https://static.bittrade.co.jp/banner/20260311/557dac0083524c01ae638e122bd330a5' },
+    { s:'shib',  name:'シバイヌ',                       dec:5, icon:'https://static.bittrade.co.jp/banner/20260311/7c7e732f60eb4040baffb94f69aac86e' },
+    { s:'sui',   name:'スイ',                           dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/2453032cbd314e16a0eb4d447690c2c4' },
+    { s:'sky',   name:'スカイ',                         dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/169f0844334d435983ca990e89442737' },
+    { s:'bnb',   name:'ビルドアンドビルド',             dec:0, icon:'https://static.bittrade.co.jp/banner/20260311/511cd58c5f034edba3ab2d174dc19913' },
+    { s:'ton',   name:'トンコイン',                     dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/7728c76887f0408594803fc42c73baa0' },
+    { s:'apt',   name:'アプトス',                       dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/1ce4c303caf84c49b63c9c75bf406c20' },
+    { s:'dai',   name:'ダイ',                           dec:3, icon:'https://static.bittrade.co.jp/banner/20260316/ed4ba9e1c7194696812835b72bdf9994' },
+    { s:'axs',   name:'アクシーインフィニティ',         dec:3, icon:'https://static.bittrade.co.jp/banner/20260316/4403e35978e34dcab10ef3286b71ccea' },
+    { s:'sand',  name:'ザ・サンドボックス',             dec:3, icon:'https://static.bittrade.co.jp/banner/20260316/17f4a8c227a44e26bd6d65dc534456b9' },
+    { s:'matic', name:'ポリゴン',                       dec:2, icon:'https://static.bittrade.co.jp/banner/20260316/94e902977e9b4a3cadf64cce9b1c403b' },
+    { s:'bsv',   name:'ビットコインSV',                 dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/9274e32072d643d79e8e599b2c4f4b6d' },
+    { s:'dep',   name:'ディープコイン',                 dec:4, icon:'https://static.bittrade.co.jp/banner/20260316/f2ad39c33f8644a4948a817b165060f0' },
+    { s:'astr',  name:'アスター',                       dec:3, icon:'https://static.bittrade.co.jp/banner/20260311/53a03780de9b41d9934845caf2ea66b6' },
+    { s:'atom',  name:'コスモス',                       dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/e3fdba49b63c4df194b7349cd613b39b' },
+    { s:'cot',   name:'コスプレトークン',               dec:4, icon:'https://static.bittrade.co.jp/banner/20260311/0cb18432dbeb4b449d3019efe729690e' },
+    { s:'jasmy', name:'ジャスミーコイン',               dec:4, icon:'https://static.bittrade.co.jp/banner/20260311/5a2d104c09ab4cd19c55af8d67f1cc42' },
+    { s:'ltc',   name:'ライトコイン',                   dec:0, icon:'https://static.bittrade.co.jp/banner/20260311/24c9e3be9c094f53b6458b6b0cda71dc' },
+    { s:'flr',   name:'フレア',                         dec:3, icon:'https://static.bittrade.co.jp/banner/20260311/893a3604c46c48da9551f37cbdedf297' },
+    { s:'ada',   name:'エイダコイン',                   dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/5c654efbd9bc4b7d9516ceebadd2c0f2' },
+    { s:'etc',   name:'イーサリアムクラシック',         dec:2, icon:'https://static.bittrade.co.jp/banner/20260309/c79785f5269c4b1e95c4c1049ace1179' },
+    { s:'dot',   name:'ポルカドット',                   dec:2, icon:'https://static.bittrade.co.jp/banner/20260316/7d8aac641960414783c5e95dad992b4b' },
+    { s:'iost',  name:'アイオーエストークン',           dec:4, icon:'https://static.bittrade.co.jp/banner/20260311/02b5eff1a78e4b7da9753369969e366b' },
+    { s:'xym',   name:'シンボル',                       dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/c4e8436c39a34cb1a2ed34b0c50adcfa' },
+    { s:'bch',   name:'ビットコインキャッシュ',         dec:0, icon:'https://static.bittrade.co.jp/banner/20260309/dd06468178ec41948641a613c3d0dcfa' },
+    { s:'xtz',   name:'テゾス',                         dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/92c073df62844856aa43199f359c19d9' },
+    { s:'qtum',  name:'クオンタム',                     dec:2, icon:'https://static.bittrade.co.jp/banner/20260309/afa597ab55d14e0296126855a093692f' },
+    { s:'boba',  name:'ボバネットワーク',               dec:2, icon:'https://static.bittrade.co.jp/banner/20260311/94f524dfdd96458f997c8b0c01382c38' },
+    { s:'bat',   name:'ベーシックアテンショントークン', dec:2, icon:'https://static.bittrade.co.jp/banner/20260309/89e24fac1b2d457d9d6659620eb99092' },
+    { s:'xlm',   name:'ステラルーメン',                 dec:2, icon:'https://static.bittrade.co.jp/banner/20260309/83db16f4106f4ab7bd98ffe2131bc1bf' },
+    { s:'ont',   name:'オントロジー',                   dec:2, icon:'https://static.bittrade.co.jp/banner/20260309/f60493fab0744f63b6aa90555562bed5' }
   ];
 
   /* ---- ユーティリティ ---- */
   function fmtPrice(n, dec) {
-    var d = (dec === undefined) ? 2 : dec;
+    var d = typeof dec === 'number' ? dec : 2;
     return '\u00A5' + parseFloat(n).toLocaleString('ja-JP', {
-      minimumFractionDigits: d,
-      maximumFractionDigits: d
+      minimumFractionDigits: d, maximumFractionDigits: d
     });
   }
 
   function spreadMod(pct) {
-    if (pct >= threshold)       return 'alert';
-    if (pct >= threshold * 0.8) return 'warn';
+    if (pct >= spreadThreshold)       return 'alert';
+    if (pct >= spreadThreshold * 0.8) return 'warn';
     return '';
   }
 
   function rowMod(pct) {
-    if (pct >= threshold)       return 'cl-row--alert';
-    if (pct >= threshold * 0.8) return 'cl-row--warn';
+    if (pct >= spreadThreshold)       return 'cl-row--alert';
+    if (pct >= spreadThreshold * 0.8) return 'cl-row--warn';
     return '';
   }
 
   function statusHtml(pct) {
-    if (pct >= threshold)
+    if (pct >= spreadThreshold)
       return '<span class="cl-status cl-status--alert">\u8b66\u544a</span>';
-    if (pct >= threshold * 0.8)
+    if (pct >= spreadThreshold * 0.8)
       return '<span class="cl-status cl-status--caution">\u6ce8\u610f</span>';
     return '<span class="cl-status cl-status--normal">\u6b63\u5e38</span>';
   }
 
   function coinRowHtml(r) {
     var abbr = r.coin.s.toUpperCase();
-    var icon = '<div class="cl-coin__icon"><img src="' + r.coin.icon + '" alt="' + abbr + '" width="32" height="32" loading="lazy"></div>';
-    var info = '<div class="cl-coin__info"><span class="cl-coin__name">' + r.coin.name + '</span><span class="cl-coin__symbol">' + abbr + '/JPY</span></div>';
+    var iconHtml =
+      '<div class="cl-coin__icon">' +
+        '<img src="' + r.coin.icon + '" alt="' + abbr + '" width="32" height="32" loading="lazy">' +
+      '</div>';
+    var infoHtml =
+      '<div class="cl-coin__info">' +
+        '<span class="cl-coin__name">' + r.coin.name + '</span>' +
+        '<span class="cl-coin__symbol">' + abbr + '/JPY</span>' +
+      '</div>';
+
     if (r.error) {
-      return '<tr class="cl-row"><td class="cl-td cl-td--coin"><div class="cl-coin">' + icon + info + '</div></td>'
-           + '<td class="cl-td" colspan="4"><span class="cl-sub">\u53d6\u5f97\u30a8\u30e9\u30fc</span></td></tr>';
+      return '<tr class="cl-row">' +
+        '<td class="cl-td cl-td--coin"><div class="cl-coin">' + iconHtml + infoHtml + '</div></td>' +
+        '<td class="cl-td" colspan="4"><span class="cl-sub">\u30c7\u30fc\u30bf\u53d6\u5f97\u30a8\u30e9\u30fc</span></td>' +
+        '</tr>';
     }
+
     var sc  = r.spread.toFixed(2);
     var mod = spreadMod(r.spread);
-    return '<tr class="cl-row ' + rowMod(r.spread) + '">'
-      + '<td class="cl-td cl-td--coin"><div class="cl-coin">' + icon + info + '</div></td>'
-      + '<td class="cl-td cl-td--bid"><span class="cl-price">' + fmtPrice(r.bid, r.coin.dec) + '</span></td>'
-      + '<td class="cl-td cl-td--ask"><span class="cl-price">' + fmtPrice(r.ask, r.coin.dec) + '</span></td>'
-      + '<td class="cl-td cl-td--spread"><span class="cl-spread' + (mod ? ' cl-spread--' + mod : '') + '">' + sc + '%</span></td>'
-      + '<td class="cl-td cl-td--status">' + statusHtml(r.spread) + '</td>'
-      + '</tr>';
+    return '<tr class="cl-row ' + rowMod(r.spread) + '">' +
+      '<td class="cl-td cl-td--coin"><div class="cl-coin">' + iconHtml + infoHtml + '</div></td>' +
+      '<td class="cl-td cl-td--bid"><span class="cl-price">' + fmtPrice(r.bid, r.coin.dec) + '</span></td>' +
+      '<td class="cl-td cl-td--ask"><span class="cl-price">' + fmtPrice(r.ask, r.coin.dec) + '</span></td>' +
+      '<td class="cl-td cl-td--spread"><span class="cl-spread' + (mod ? ' cl-spread--' + mod : '') + '">' + sc + '%</span></td>' +
+      '<td class="cl-td cl-td--status">' + statusHtml(r.spread) + '</td>' +
+      '</tr>';
   }
 
-  /* ---- 描画 ---- */
-  function render(results) {
-    results.sort(function (a, b) {
+  /* ---- データ取得 ---- */
+  async function fetchAll() {
+    var tbody = document.getElementById('btsm-tbody');
+    tbody.innerHTML = '<tr><td colspan="5" class="cl-loading">\u30c7\u30fc\u30bf\u8aad\u307f\u8fbc\u307f\u4e2d...</td></tr>';
+
+    var results = [];
+
+    for (var i = 0; i < COINS.length; i += 8) {
+      var batch = COINS.slice(i, i + 8);
+      await Promise.allSettled(batch.map(function(coin) {
+        return fetch(API + '?symbol=' + coin.s + 'jpy', { cache: 'no-store' })
+          .then(function(res) { return res.json(); })
+          .then(function(data) {
+            if (data.status !== 'ok' || !data.tick) throw new Error('no tick');
+            var ask    = data.tick.ask[0];
+            var bid    = data.tick.bid[0];
+            var spread = ((ask - bid) / bid) * 100;
+            results.push({ coin: coin, ask: ask, bid: bid, spread: spread, error: false });
+          })
+          .catch(function() {
+            results.push({ coin: coin, error: true });
+          });
+      }));
+    }
+
+    /* 並び替え */
+    results.sort(function(a, b) {
       if ( a.error && !b.error) return 1;
       if (!a.error &&  b.error) return -1;
       if ( a.error &&  b.error) return 0;
@@ -359,108 +616,77 @@ var btsm = (function () {
       return b.spread - a.spread;
     });
 
-    var valid   = results.filter(function (r) { return !r.error; });
-    var alerted = valid.filter(function (r) { return r.spread >= threshold; });
-    var maxItem = null;
-    for (var i = 0; i < valid.length; i++) {
-      if (!maxItem || valid[i].spread > maxItem.spread) maxItem = valid[i];
-    }
+    /* サマリー */
+    var valid   = results.filter(function(r) { return !r.error; });
+    var alerted = valid.filter(function(r) { return r.spread >= spreadThreshold; });
+    var maxItem = valid.reduce(function(m, r) { return (!m || r.spread > m.spread) ? r : m; }, null);
 
-    var el = function (id) { return document.getElementById(id); };
-    el('btsm-total').textContent    = valid.length;
-    el('btsm-alerts').textContent   = alerted.length;
-    el('btsm-alerts-sub').textContent = '\u3057\u304d\u3044\u5024 ' + threshold + '% \u8d85\u904e';
-    el('btsm-max').textContent      = maxItem ? maxItem.spread.toFixed(2) + '%' : '--';
-    el('btsm-max-coin').textContent = maxItem ? maxItem.coin.s.toUpperCase() + ' / ' + maxItem.coin.name : '--';
+    document.getElementById('btsm-total').textContent   = valid.length;
+    document.getElementById('btsm-alerts').textContent  = alerted.length;
+    document.getElementById('btsm-alerts-sub').textContent =
+      '\u3057\u304d\u3044\u5024 ' + spreadThreshold + '% \u8d85\u904e';
+    document.getElementById('btsm-max').textContent     = maxItem ? maxItem.spread.toFixed(2) + '%' : '--';
+    document.getElementById('btsm-max-coin').textContent = maxItem
+      ? maxItem.coin.s.toUpperCase() + ' / ' + maxItem.coin.name : '--';
 
-    var html = '';
-    for (var j = 0; j < results.length; j++) { html += coinRowHtml(results[j]); }
-    el('btsm-tbody').innerHTML = html;
-    el('btsm-updated').textContent = '\u6700\u7d42\u66f4\u65b0: ' + new Date().toLocaleString('ja-JP');
-    el('btsm-footer').textContent  = valid.length + ' \u9298\u67c4\u53d6\u5f97\u5b8c\u4e86 \u2014 60\u79d2\u3054\u3068\u306b\u81ea\u52d5\u66f4\u65b0';
+    /* タイトル */
+    document.title = alerted.length > 0
+      ? '(' + alerted.length + ') \u30b9\u30d7\u30ec\u30c3\u30c9\u76e3\u8996 | BitTrade'
+      : '\u30b9\u30d7\u30ec\u30c3\u30c9\u76e3\u8996 | BitTrade';
+
+    /* テーブル描画 */
+    tbody.innerHTML = results.map(coinRowHtml).join('');
+
+    var now = new Date();
+    document.getElementById('btsm-updated').textContent =
+      '\u6700\u7d42\u66f4\u65b0: ' + now.toLocaleString('ja-JP');
+    document.getElementById('btsm-footer').textContent =
+      valid.length + ' \u9298\u67c4\u53d6\u5f97\u5b8c\u4e86 \u2014 60\u79d2\u3054\u3068\u306b\u81ea\u52d5\u66f4\u65b0';
   }
 
-  /* ---- XMLHttpRequest で全銘柄並列取得 ---- */
-  function fetchAll() {
-    var tbody = document.getElementById('btsm-tbody');
-    if (!tbody) return;
-    tbody.innerHTML = '<tr><td colspan="5" class="cl-loading">\u30c7\u30fc\u30bf\u8aad\u307f\u8fbc\u307f\u4e2d...</td></tr>';
-
-    var results = [];
-    var pending = COINS.length;
-
-    function done() {
-      pending -= 1;
-      if (pending === 0) render(results);
-    }
-
-    for (var i = 0; i < COINS.length; i++) {
-      (function (coin) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', API + '?symbol=' + coin.s + 'jpy', true);
-        xhr.timeout = 15000;
-
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState !== 4) return;
-          if (xhr.status === 200) {
-            try {
-              var d = JSON.parse(xhr.responseText);
-              if (d.status === 'ok' && d.tick && d.tick.ask && d.tick.bid) {
-                var ask = d.tick.ask[0];
-                var bid = d.tick.bid[0];
-                results.push({ coin: coin, ask: ask, bid: bid,
-                  spread: ((ask - bid) / bid) * 100, error: false });
-              } else {
-                results.push({ coin: coin, error: true });
-              }
-            } catch (e) {
-              results.push({ coin: coin, error: true });
-            }
-          } else {
-            results.push({ coin: coin, error: true });
-          }
-          done();
-        };
-
-        xhr.ontimeout = function () {
-          results.push({ coin: coin, error: true });
-          done();
-        };
-
-        xhr.onerror = function () {
-          results.push({ coin: coin, error: true });
-          done();
-        };
-
-        xhr.send();
-      }(COINS[i]));
-    }
-  }
-
-  /* ---- 初期化 ---- */
-  function init() {
-    var applyBtn = document.getElementById('btsm-apply');
-    if (!applyBtn) { setTimeout(init, 50); return; }
-
-    document.getElementById('btsm-sort').onchange = function () {
-      sortOrder = this.value;
+  /* ---- 認証 ---- */
+  function login() {
+    var pw  = document.getElementById('btsm-pw').value;
+    var err = document.getElementById('btsm-error');
+    if (pw === PASSWORD) {
+      document.getElementById('btsm-login').style.display  = 'none';
+      document.getElementById('btsm-root').style.display   = 'block';
       fetchAll();
-    };
-    applyBtn.onclick = function () {
-      var val = parseFloat(document.getElementById('btsm-threshold').value);
-      if (!isNaN(val) && val > 0) { threshold = val; fetchAll(); }
-    };
+      intervalId = setInterval(fetchAll, 60000);
+    } else {
+      err.textContent = '\u30d1\u30b9\u30ef\u30fc\u30c9\u304c\u6b63\u3057\u304f\u3042\u308a\u307e\u305b\u3093';
+    }
+  }
 
+  function logout() {
+    clearInterval(intervalId);
+    document.getElementById('btsm-root').style.display  = 'none';
+    document.getElementById('btsm-login').style.display = 'flex';
+    document.getElementById('btsm-pw').value            = '';
+    document.getElementById('btsm-error').textContent   = '';
+  }
+
+  /* ---- イベント ---- */
+  document.getElementById('btsm-login-btn').addEventListener('click', login);
+  document.getElementById('btsm-pw').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') login();
+  });
+  document.getElementById('btsm-logout-btn').addEventListener('click', logout);
+
+  document.getElementById('btsm-sort').addEventListener('change', function() {
+    sortOrder = this.value;
     fetchAll();
-    timer = setInterval(fetchAll, 60000);
-  }
+  });
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  document.getElementById('btsm-apply').addEventListener('click', function() {
+    var val = parseFloat(document.getElementById('btsm-threshold').value);
+    if (!isNaN(val) && val > 0) {
+      spreadThreshold = val;
+      fetchAll();
+    } else {
+      document.getElementById('btsm-threshold').value = spreadThreshold;
+    }
+  });
 
-  return {};
 }());
 </script>
