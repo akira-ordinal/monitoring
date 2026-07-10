@@ -3,46 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>スプレッド監視 | BitTrade</title>
-<meta name="description" content="BitTrade取扱銘柄の売値・買値スプレッド（乖離率）をリアルタイムで監視するツールです。しきい値を超えた銘柄を自動検知し、一覧表示します。">
+<title>スプレッド監視</title>
+<meta name="description" content="取扱銘柄の売値・買値スプレッド監視">
 <link rel="canonical" href="https://akira-ordinal.github.io/monitoring/">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Akira Ito">
 
-<!-- OGP -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="スプレッド監視 | BitTrade">
-<meta property="og:description" content="BitTrade取扱銘柄のスプレッド（乖離率）をリアルタイムで監視するツールです。">
+<meta property="og:description" content="取扱銘柄の売値・買値スプレッド監視">
 <meta property="og:url" content="https://akira-ordinal.github.io/monitoring/">
-<meta property="og:site_name" content="BitTrade スプレッド監視">
+<meta property="og:site_name" content="取扱銘柄の売値・買値スプレッド監視">
 <meta property="og:locale" content="ja_JP">
 
-<!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="スプレッド監視 | BitTrade">
-<meta name="twitter:description" content="BitTrade取扱銘柄のスプレッド（乖離率）をリアルタイムで監視するツールです。">
+<meta name="twitter:title" content="スプレッド監視">
+<meta name="twitter:description" content="取扱銘柄の売値・買値スプレッド監視">
 
-<!-- 構造化データ -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "BitTrade スプレッド監視",
+  "name": "スプレッド監視",
   "url": "https://akira-ordinal.github.io/monitoring/",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Any",
-  "description": "BitTrade取扱銘柄における売値・買値のスプレッド（乖離率）をリアルタイムで監視するツール",
+  "description": "取扱銘柄の売値・買値スプレッド監視",
   "inLanguage": "ja"
 }
 </script>
 
 <style>
 /* ==========================================================
-   BitTrade スプレッド監視
    全スタイルは #btsm-login / #btsm-root スコープで隔離
    ========================================================== */
 
-/* ---- ログインオーバーレイ ---- */
 #btsm-login {
   position: fixed;
   inset: 0;
@@ -111,12 +106,10 @@
   min-height: 18px;
 }
 
-/* ---- アプリ本体 ---- */
 #btsm-root {
   font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* サマリーカード */
 #btsm-root .btsm-summary {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -153,7 +146,6 @@
   margin-top: 2px;
 }
 
-/* 設定バー */
 #btsm-root .btsm-settings {
   display: flex;
   align-items: center;
@@ -238,7 +230,6 @@
   color: #546070;
 }
 
-/* テーブル */
 #btsm-root .cl-table-wrap {
   background: #fff;
   border: 1px solid #DDE3ED;
@@ -278,7 +269,6 @@
   vertical-align: middle;
 }
 
-/* 銘柄セル — アイコンのずれを修正 */
 #btsm-root .cl-coin {
   display: flex;
   align-items: center;
@@ -325,7 +315,6 @@
   color: #546070;
 }
 
-/* 価格 */
 #btsm-root .cl-price {
   font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
@@ -333,7 +322,6 @@
   color: #111820;
 }
 
-/* スプレッド */
 #btsm-root .cl-spread {
   display: inline-block;
   font-family: 'JetBrains Mono', monospace;
@@ -347,7 +335,6 @@
 #btsm-root .cl-spread--warn { background: #FFFBEB; color: #92400E; }
 #btsm-root .cl-spread--alert { background: #FEF2F2; color: #B91C1C; }
 
-/* ステータス */
 #btsm-root .cl-status {
   display: inline-block;
   padding: 3px 8px;
@@ -378,7 +365,6 @@
   text-align: right;
 }
 
-/* レスポンシブ */
 @media (max-width: 767px) {
   #btsm-root .cl-th--bid,
   #btsm-root .cl-td--bid { display: none; }
@@ -394,7 +380,6 @@
 </head>
 <body>
 
-<!-- ログインオーバーレイ -->
 <div id="btsm-login">
   <div class="lc">
     <h2 class="lc__title">モニタリング</h2>
@@ -404,10 +389,8 @@
   </div>
 </div>
 
-<!-- アプリ本体 -->
 <div id="btsm-root" style="display:none;">
 
-  <!-- サマリーカード -->
   <div class="btsm-summary">
     <div class="btsm-sc">
       <div class="btsm-sc__label">監視銘柄数</div>
@@ -426,7 +409,6 @@
     </div>
   </div>
 
-  <!-- 設定バー -->
   <div class="btsm-settings">
     <div class="btsm-group">
       <span class="btsm-label">警告しきい値</span>
@@ -447,8 +429,7 @@
     <button id="btsm-logout-btn" class="btsm-btn btsm-btn--logout">ログアウト</button>
   </div>
 
-  <!-- テーブル -->
-  <div class="cl-table-wrap">
+ <div class="cl-table-wrap">
     <table class="cl-table">
       <thead class="cl-table__head">
         <tr>
@@ -471,15 +452,12 @@
 (function () {
   'use strict';
 
-  /* ---- 設定 ---- */
   var PASSWORD = '0927';
   var intervalId = null;
   var spreadThreshold = 5.0;
   var sortOrder = 'spread-desc';
   var API = 'https://api-cloud.bittrade.co.jp/market/detail/merged';
 
-  /* ---- BitTradeのチャートページに直接リンクする銘柄 ----
-     ここに含まれない銘柄は finance.ordinal-online.com 側にリンクします */
   var BT_CHART_SYMBOLS = [
     'btc', 'eth', 'xrp', 'sol', 'doge', 'shib', 'trx', 'trump', 'pepe',
     'dep', 'sui', 'bnb', 'upc', 'jasmy', 'iost', 'bch', 'ltc', 'op',
@@ -493,7 +471,6 @@
     return 'https://finance.ordinal-online.com/symbol/' + symbol + '/';
   }
 
-  /* ---- 銘柄リスト (/chart_price/ と同一の順序・アイコンURL) ---- */
   var COINS = [
     { s:'btc', name:'ビットコイン', dec:0, icon:'https://static.bittrade.co.jp/banner/20260309/17b710a9883f44ab8d6516ff41ffb13b' },
     { s:'sol', name:'ソラナ', dec:0, icon:'https://static.bittrade.co.jp/banner/20240507/05082f72ca5d4475854c2a97246b138f' },
@@ -544,7 +521,6 @@
     { s:'ont', name:'オントロジー', dec:2, icon:'https://static.bittrade.co.jp/banner/20260309/f60493fab0744f63b6aa90555562bed5' }
   ];
 
-  /* ---- ユーティリティ ---- */
   function fmtPrice(n, dec) {
     var d = typeof dec === 'number' ? dec : 2;
     return '\u00A5' + parseFloat(n).toLocaleString('ja-JP', {
@@ -603,7 +579,6 @@
     '</tr>';
   }
 
-  /* ---- データ取得 ---- */
   async function fetchAll() {
     var tbody = document.getElementById('btsm-tbody');
     tbody.innerHTML = '<tr><td colspan="5" class="cl-loading">\u30c7\u30fc\u30bf\u8aad\u307f\u8fbc\u307f\u4e2d...</td></tr>';
@@ -627,7 +602,6 @@
       }));
     }
 
-    /* 並び替え */
     results.sort(function(a, b) {
       if ( a.error && !b.error) return 1;
       if (!a.error &&  b.error) return -1;
@@ -637,7 +611,6 @@
       return b.spread - a.spread;
     });
 
-    /* サマリー */
     var valid = results.filter(function(r) { return !r.error; });
     var alerted = valid.filter(function(r) { return r.spread >= spreadThreshold; });
     var maxItem = valid.reduce(function(m, r) { return (!m || r.spread > m.spread) ? r : m; }, null);
@@ -650,12 +623,10 @@
     document.getElementById('btsm-max-coin').textContent = maxItem
       ? maxItem.coin.s.toUpperCase() + ' / ' + maxItem.coin.name : '--';
 
-    /* タイトル */
     document.title = alerted.length > 0
       ? '(' + alerted.length + ') \u30b9\u30d7\u30ec\u30c3\u30c9\u76e3\u8996 | BitTrade'
       : '\u30b9\u30d7\u30ec\u30c3\u30c9\u76e3\u8996 | BitTrade';
 
-    /* テーブル描画 */
     tbody.innerHTML = results.map(coinRowHtml).join('');
 
     var now = new Date();
@@ -665,7 +636,6 @@
       valid.length + ' \u9298\u67c4\u53d6\u5f97\u5b8c\u4e86 \u2014 60\u79d2\u3054\u3068\u306b\u81ea\u52d5\u66f4\u65b0';
   }
 
-  /* ---- 認証 ---- */
   function login() {
     var pw = document.getElementById('btsm-pw').value;
     var err = document.getElementById('btsm-error');
@@ -686,7 +656,6 @@
     document.getElementById('btsm-error').textContent = '';
   }
 
-  /* ---- イベント ---- */
   document.getElementById('btsm-login-btn').addEventListener('click', login);
   document.getElementById('btsm-pw').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') login();
