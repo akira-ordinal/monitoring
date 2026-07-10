@@ -1,6 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スプレッド監視 | BitTrade</title>
+<meta name="description" content="BitTrade取扱銘柄の売値・買値スプレッド（乖離率）をリアルタイムで監視するツールです。しきい値を超えた銘柄を自動検知し、一覧表示します。">
+<link rel="canonical" href="https://akira-ordinal.github.io/monitoring/">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Akira Ito">
+
+<!-- OGP -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="スプレッド監視 | BitTrade">
+<meta property="og:description" content="BitTrade取扱銘柄のスプレッド（乖離率）をリアルタイムで監視するツールです。">
+<meta property="og:url" content="https://akira-ordinal.github.io/monitoring/">
+<meta property="og:site_name" content="BitTrade スプレッド監視">
+<meta property="og:locale" content="ja_JP">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="スプレッド監視 | BitTrade">
+<meta name="twitter:description" content="BitTrade取扱銘柄のスプレッド（乖離率）をリアルタイムで監視するツールです。">
+
+<!-- 構造化データ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "BitTrade スプレッド監視",
+  "url": "https://akira-ordinal.github.io/monitoring/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "description": "BitTrade取扱銘柄における売値・買値のスプレッド（乖離率）をリアルタイムで監視するツール",
+  "inLanguage": "ja"
+}
+</script>
+
 <style>
 /* ==========================================================
-   BitTrade スプレッド監視 — WordPress Custom HTML 専用
+   BitTrade スプレッド監視
    全スタイルは #btsm-login / #btsm-root スコープで隔離
    ========================================================== */
 
@@ -353,6 +391,8 @@
   #btsm-root .btsm-meta { margin-left: 0; }
 }
 </style>
+</head>
+<body>
 
 <!-- ログインオーバーレイ -->
 <div id="btsm-login">
@@ -667,3 +707,5 @@
   });
 }());
 </script>
+</body>
+</html>
