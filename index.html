@@ -622,8 +622,8 @@
       ? maxItem.coin.s.toUpperCase() + ' / ' + maxItem.coin.name : '--';
 
     document.title = alerted.length > 0
-      ? '(' + alerted.length + ') \u30b9\u30d7\u30ec\u30c3\u30c9\u76e3\u8996 | BitTrade'
-      : '\u30b9\u30d7\u30ec\u30c3\u30c9\u76e3\u8996 | BitTrade';
+      ? '(' + alerted.length + ') \u30b9\u30d7\u30ec\u30c3\u30c9\u76e3\u8996'
+      : '\u30b9\u30d7\u30ec\u30c3\u30c9\u76e3\u8996';
 
     tbody.innerHTML = results.map(coinRowHtml).join('');
 
