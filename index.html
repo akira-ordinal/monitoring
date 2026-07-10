@@ -13,7 +13,7 @@
 <meta property="og:title" content="スプレッド監視">
 <meta property="og:description" content="取扱銘柄の売値・買値スプレッド監視">
 <meta property="og:url" content="https://akira-ordinal.github.io/monitoring/">
-<meta property="og:site_name" content="取扱銘柄の売値・買値スプレッド監視">
+<meta property="og:site_name" content="スプレッド監視">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary">
@@ -35,15 +35,14 @@
 
 <style>
 
-
 #btsm-login {
-  position: fixed;
-  inset: 0;
+  min-height: 100vh;
   background: linear-gradient(160deg, #001824 0%, #003348 70%);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 99999;
+  padding: 40px 16px;
+  box-sizing: border-box;
 }
 #btsm-login .lc {
   background: #fff;
@@ -374,6 +373,50 @@
   #btsm-root .btsm-settings { flex-direction: column; align-items: flex-start; }
   #btsm-root .btsm-meta { margin-left: 0; }
 }
+
+#btsm-refs {
+  font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #F7F9FC;
+  border-top: 1px solid #DDE3ED;
+  padding: 32px 20px 40px;
+}
+#btsm-refs .btsm-refs__inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+#btsm-refs .btsm-refs__title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111820;
+  margin: 0 0 4px;
+}
+#btsm-refs .btsm-refs__desc {
+  font-size: 12px;
+  color: #546070;
+  margin: 0 0 16px;
+}
+#btsm-refs .btsm-refs__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 4px 16px;
+}
+#btsm-refs .btsm-refs__list a {
+  display: block;
+  padding: 4px 0;
+  font-size: 12px;
+  color: #546070;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#btsm-refs .btsm-refs__list a:hover {
+  color: #001824;
+  text-decoration: underline;
+}
 </style>
 </head>
 <body>
@@ -427,7 +470,7 @@
     <button id="btsm-logout-btn" class="btsm-btn btsm-btn--logout">ログアウト</button>
   </div>
 
- <div class="cl-table-wrap">
+  <div class="cl-table-wrap">
     <table class="cl-table">
       <thead class="cl-table__head">
         <tr>
@@ -445,6 +488,62 @@
     <div class="cl-footer" id="btsm-footer">60秒ごとに自動更新</div>
   </div>
 </div>
+
+<footer id="btsm-refs">
+  <div class="btsm-refs__inner">
+    <h2 class="btsm-refs__title">参考：取扱銘柄一覧</h2>
+    <p class="btsm-refs__desc"></p>
+    <ul class="btsm-refs__list">
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/btc">ビットコイン（BTC）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/sol">ソラナ（SOL）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/eth">イーサリアム（ETH）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/xrp">エックスアールピー（XRP）</a></li>
+      <li><a href="https://finance.ordinal-online.com/symbol/joc/">ジェーオーシーコイン（JOC）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/upc">ユーピーシーエックス（UPC）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/hbar">ヘデラ ハッシュグラフ（HBAR）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/trump">オフィシャルトランプ（TRUMP）</a></li>
+      <li><a href="https://finance.ordinal-online.com/symbol/link/">チェーンリンク（LINK）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/trx">トロン（TRX）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/crts">クラトス（CRTS）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/op">オプティミズム（OP）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/arb">アービトラム（ARB）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/wbtc">ラップドビットコイン（WBTC）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/pepe">ぺぺ（PEPE）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/a">ボルタ（A）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/doge">ドージコイン（DOGE）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/shib">シバイヌ（SHIB）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/sui">スイ（SUI）</a></li>
+      <li><a href="https://finance.ordinal-online.com/symbol/sky/">スカイ（SKY）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/bnb">ビルドアンドビルド（BNB）</a></li>
+      <li><a href="https://finance.ordinal-online.com/symbol/ton/">トンコイン（TON）</a></li>
+      <li><a href="https://finance.ordinal-online.com/symbol/apt/">アプトス（APT）</a></li>
+      <li><a href="https://finance.ordinal-online.com/symbol/dai/">ダイ（DAI）</a></li>
+      <li><a href="https://finance.ordinal-online.com/symbol/axs/">アクシーインフィニティ（AXS）</a></li>
+      <li><a href="https://finance.ordinal-online.com/symbol/sand/">ザ・サンドボックス（SAND）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/matic">ポリゴン（MATIC）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/bsv">ビットコインSV（BSV）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/dep">ディープコイン（DEP）</a></li>
+      <li><a href="https://finance.ordinal-online.com/symbol/astr/">アスター（ASTR）</a></li>
+      <li><a href="https://finance.ordinal-online.com/symbol/atom/">コスモス（ATOM）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/cot">コスプレトークン（COT）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/jasmy">ジャスミーコイン（JASMY）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/ltc">ライトコイン（LTC）</a></li>
+      <li><a href="https://finance.ordinal-online.com/symbol/flr/">フレア（FLR）</a></li>
+      <li><a href="https://finance.ordinal-online.com/symbol/ada/">エイダコイン（ADA）</a></li>
+      <li><a href="https://finance.ordinal-online.com/symbol/etc/">イーサリアムクラシック（ETC）</a></li>
+      <li><a href="https://finance.ordinal-online.com/symbol/dot/">ポルカドット（DOT）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/iost">アイオーエストークン（IOST）</a></li>
+      <li><a href="https://finance.ordinal-online.com/symbol/xym/">シンボル（XYM）</a></li>
+      <li><a href="https://www.bittrade.co.jp/ja-jp/chart/bch">ビットコインキャッシュ（BCH）</a></li>
+      <li><a href="https://finance.ordinal-online.com/symbol/xtz/">テゾス（XTZ）</a></li>
+      <li><a href="https://finance.ordinal-online.com/symbol/qtum/">クオンタム（QTUM）</a></li>
+      <li><a href="https://finance.ordinal-online.com/symbol/boba/">ボバネットワーク（BOBA）</a></li>
+      <li><a href="https://finance.ordinal-online.com/symbol/bat/">ベーシックアテンショントークン（BAT）</a></li>
+      <li><a href="https://finance.ordinal-online.com/symbol/xlm/">ステラルーメン（XLM）</a></li>
+      <li><a href="https://finance.ordinal-online.com/symbol/ont/">オントロジー（ONT）</a></li>
+    </ul>
+  </div>
+</footer>
 
 <script>
 (function () {
